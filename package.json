@@ -1,0 +1,90 @@
+{
+  "name": "@world2agent/sdk",
+  "version": "0.1.0-alpha.0",
+  "description": "World2Agent — core SDK (signal types, validation, transports, helpers)",
+  "license": "Apache-2.0",
+  "author": "MachinePulse AI",
+  "homepage": "https://github.com/machinepulse-ai/world2agent",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/machinepulse-ai/world2agent-typescript-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/machinepulse-ai/world2agent-typescript-sdk/issues"
+  },
+  "keywords": [
+    "world2agent",
+    "w2a",
+    "signal",
+    "agent",
+    "ai",
+    "sensor",
+    "perception"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./sensor": {
+      "types": "./dist/sensor/index.d.ts",
+      "default": "./dist/sensor/index.js"
+    },
+    "./consumer": {
+      "types": "./dist/consumer/index.d.ts",
+      "default": "./dist/consumer/index.js"
+    },
+    "./testing": {
+      "types": "./dist/testing/index.d.ts",
+      "default": "./dist/testing/index.js"
+    },
+    "./schemas": {
+      "types": "./dist/schemas.d.ts",
+      "default": "./dist/schemas.js"
+    },
+    "./stores": {
+      "types": "./dist/stores/index.d.ts",
+      "default": "./dist/stores/index.js"
+    },
+    "./transports": {
+      "types": "./dist/transports.d.ts",
+      "default": "./dist/transports.js"
+    },
+    "./helpers": {
+      "types": "./dist/helpers.d.ts",
+      "default": "./dist/helpers.js"
+    },
+    "./errors": {
+      "types": "./dist/errors.d.ts",
+      "default": "./dist/errors.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "pnpm run clean && pnpm run build"
+  },
+  "peerDependencies": {
+    "zod": "^3.25.0"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.8.0",
+    "vitest": "^4.1.5"
+  }
+}
