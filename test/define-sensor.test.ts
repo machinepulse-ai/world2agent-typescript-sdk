@@ -136,4 +136,32 @@ describe("defineSensor", () => {
     });
     expect(spec.configSchema).toBeDefined();
   });
+
+  it("accepts Zod schemas with `.default()` and exposes the OUTPUT type on ctx.config", () => {
+    // Regression: without z.ZodType<T, ZodTypeDef, any> on configSchema, TS
+    // would infer TConfig from the schema's Input type (optionals from
+    // `.default()`), breaking `this` / `ctx.config` typing for the caller.
+    const schema = z.object({
+      count: z.coerce.number().default(10),
+      name: z.string(),
+    });
+
+    const spec = defineSensor({
+      id: "@w2a/sensor-demo",
+      version: "0.1.0",
+      source_type: "demo",
+      auth: { type: "none" },
+      configSchema: schema,
+      async start(ctx) {
+        // If the generic leaked the Input type, these assignments would fail
+        // because `count` would be `number | undefined`.
+        const _count: number = ctx.config.count;
+        const _name: string = ctx.config.name;
+        void _count;
+        void _name;
+        return () => {};
+      },
+    });
+    expect(spec.configSchema).toBeDefined();
+  });
 });

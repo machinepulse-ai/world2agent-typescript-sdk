@@ -156,8 +156,13 @@ export interface SensorSpec<TConfig = Record<string, unknown>> {
   source_type: string;
   /** Authentication spec declaring what credentials this sensor needs. */
   auth: AuthSpec;
-  /** Optional Zod schema for typed config validation. */
-  configSchema?: z.ZodType<TConfig>;
+  /**
+   * Optional Zod schema for typed config validation. `TConfig` is the schema's
+   * output type (i.e. `z.infer<typeof schema>`) — the third generic is `any`
+   * so schemas using `.default()` / `.transform()` work without forcing the
+   * caller to unify input and output types.
+   */
+  configSchema?: z.ZodType<TConfig, z.ZodTypeDef, any>;
   /** Consumer-side auth. If set, transport must verify consumers. */
   consumerAuth?: ConsumerAuth;
   /** Start the sensor. Returns a cleanup function to stop it. */

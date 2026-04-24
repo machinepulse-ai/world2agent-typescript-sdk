@@ -23,7 +23,7 @@ export abstract class BaseSensor<TConfig = Record<string, unknown>>
   abstract version: string;
   abstract source_type: string;
   abstract auth: AuthSpec;
-  configSchema?: z.ZodType<TConfig>;
+  configSchema?: z.ZodType<TConfig, z.ZodTypeDef, any>;
   consumerAuth?: ConsumerAuth;
 
   abstract start(ctx: SensorContext<TConfig>): Promise<CleanupFn>;

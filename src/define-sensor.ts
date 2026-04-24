@@ -14,7 +14,7 @@ export interface DefineSensorInput<TConfig = Record<string, unknown>> {
   version: string;
   source_type: string;
   auth: AuthSpec;
-  configSchema?: z.ZodType<TConfig>;
+  configSchema?: z.ZodType<TConfig, z.ZodTypeDef, any>;
   consumerAuth?: ConsumerAuth;
   start(
     this: SensorSpec<TConfig>,
