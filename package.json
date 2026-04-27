@@ -3,7 +3,7 @@
   "version": "0.1.0-alpha.1",
   "description": "World2Agent — core SDK (signal types, validation, transports, helpers)",
   "license": "Apache-2.0",
-  "author": "MachinePulse AI",
+  "author": "MachinePulse Pte. Ltd.",
   "homepage": "https://github.com/machinepulse-ai/world2agent",
   "repository": {
     "type": "git",
